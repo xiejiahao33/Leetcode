@@ -25,15 +25,6 @@ package 分治;
  */
 public class _二叉树的最大深度 {
 
-    public class TreeNode {
-     public int val;
-     public TreeNode left, right;
-     public TreeNode(int val) {
-         this.val = val;
-         this.left = this.right = null;
-    }
- }
-
     //分治算法
     public int maxDepth(TreeNode root) {
         // write your code here

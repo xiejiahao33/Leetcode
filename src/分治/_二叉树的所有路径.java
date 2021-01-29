@@ -30,16 +30,6 @@ import java.util.List;
  */
 public class _二叉树的所有路径 {
 
-    public class TreeNode {
-        public int val;
-        public TreeNode left, right;
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-
-
     //dfs算法
     private void dfs(TreeNode root, String path, List<String> result) {
         if(root==null) return;
