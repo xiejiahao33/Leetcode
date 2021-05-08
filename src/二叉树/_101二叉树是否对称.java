@@ -1,6 +1,8 @@
 package 二叉树;
 
 
+import java.util.Stack;
+
 /**
  * 比如说，给你的二叉树是：
 
@@ -32,7 +34,7 @@ class TreeNode {
 }
 
 
-public class _101二叉树是否堆成 {
+public class _101二叉树是否对称 {
     public boolean isSymmetric(TreeNode root) {
         if(root==null) return true;
 
@@ -44,4 +46,29 @@ public class _101二叉树是否堆成 {
             return s.val==t.val && isSymmetricHelp(s.left,t.right) && isSymmetricHelp(s.right,t.left);
         else return s==null && t==null;
     }
+
+
+
+    //非递归的解法
+    public boolean isSymmetricIteration(TreeNode root) {
+        if (root==null) return true;
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root.left);
+        stack.push(root.right);
+
+        while (!stack.isEmpty()){
+            TreeNode s = stack.pop(),t = stack.pop();
+            if(s==null && t==null) continue;
+            if(s==null || t==null) return  false;
+            if(s.val!=t.val) return false;
+
+            stack.push(s.left);
+            stack.push(t.right);
+            stack.push(s.right);
+            stack.push(t.left);
+        }
+        return true;
+    }
+
 }
