@@ -1,8 +1,6 @@
 package 算法模式.双指针;
 
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +31,7 @@ public class TripletSumToZero {
     public static List<List<Integer>> searchTriplets(int[] arr){
 
         List<List<Integer>> triplets = new ArrayList<>();
-        Arrays.sort(arr);// [-4,-1,-1,0,1,2]
+        Arrays.sort(arr);// [-3,-1,-1,0,1,2,4]
 
         for (int i = 0; i <arr.length-2 ; i++) {
             if(i>0 && arr[i]==arr[i-1]) continue;
@@ -60,7 +58,6 @@ public class TripletSumToZero {
              else right--;
         }
     }
-
 
     public static void main(String[] args) {
         System.out.println(TripletSumToZero.searchTriplets(new int[]{-3,0,1,2,-1,1,-2}));
