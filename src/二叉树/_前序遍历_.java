@@ -10,16 +10,7 @@ import java.util.Stack;
 
 
 public class _前序遍历_ {
-    //node节点的定义
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     //前序递归
     private void preorder(TreeNode root, List<Integer> result){
@@ -55,7 +46,7 @@ public class _前序遍历_ {
     }
 
     //分治法
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public static List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<Integer>();
 
         if(root==null) return  result;
@@ -71,5 +62,16 @@ public class _前序遍历_ {
         result.addAll(right);
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(12);
+        root.left = new TreeNode(7);
+        root.right = new TreeNode(1);
+        root.left.left = new TreeNode(9);
+        root.right.left = new TreeNode(10);
+        root.right.right = new TreeNode(5);
+        List<Integer> result = preorderTraversal(root);
+        System.out.println("层序遍历:"+  result);
     }
 }
