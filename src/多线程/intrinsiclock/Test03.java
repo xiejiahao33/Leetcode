@@ -1,35 +1,37 @@
 package 多线程.intrinsiclock;
 
 public class Test03 {
-
     public static void main(String[] args) {
-        //创建2个线程，分别调用mm()方法
-        //创建Test01对象，通过对象调用mm()方法
-        Test03 obj = new Test03();
-        Test03 obj2 = new Test03();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                obj.mm(); //使用的锁对象this就是obj对象
-            }
-        }).start();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                obj2.mm(); //使用的锁对象this也是obj对象
-            }
-        }).start();
+        SubThread t1 = new SubThread();
+        t1.setName("a");
+        t1.start();
+        SubThread t2 = new SubThread();
+        t2.setName("b");
+        t2.start();
     }
 
-
-    public static final Object OBJ = new Object();//常量
-    public void mm(){
-        synchronized (OBJ){   //经常使用this当前对象作为锁对象
-            for (int i = 1; i <=100 ; i++) {
-                System.out.println(Thread.currentThread().getName()+"-->"+i);
+    static class SubThread extends Thread{
+        private static final Object lock1 = new Object();
+        private static final Object lock2 = new Object();
+        @Override
+        public void run() {
+            if ("a".equals(Thread.currentThread().getName())){
+                synchronized (lock1){
+                    System.out.println("a线程获得了lock1 锁,还需 要获得 lock2 锁");
+                    synchronized (lock2){
+                        System.out.println("a 线程获得 lock1 后又 获得了 lock2,可以想干任何想干的事");
+                    }
+                }
+            }
+            if ("b".equals(Thread.currentThread().getName())){
+                synchronized (lock2){
+                    System.out.println("b线程获得了lock2锁,还需 要获得 lock1 锁");
+                    synchronized (lock1){
+                        System.out.println("b 线程获得lock2后又 获得了 lock1,可以想干任何想干的事");
+                    }
+                }
             }
         }
     }
 }
+
