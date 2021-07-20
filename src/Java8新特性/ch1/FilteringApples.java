@@ -1,5 +1,6 @@
 package Java8新特性.ch1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,39 +11,24 @@ public class FilteringApples {
                 new Apple(155, "green"),
                 new Apple(120, "red"));
 
-
+        List<Apple> result =filterApples(inventory,(Apple apple)->"red".equals(apple.getColor()));
+        System.out.println(result);
     }
 
-    public static class Apple {
-        private int weight = 0;
-        private String color = "";
 
-        public Apple(int weight, String color){
-            this.weight = weight;
-            this.color = color;
+    public static List<Apple> filterApples(List<Apple> inventory,ApplePredicate p ){
+        List<Apple> result = new ArrayList<>();
+        for (Apple apple:inventory) {
+            if(p.test(apple)){
+                result.add(apple);
+            }
         }
 
-        public Integer getWeight() {
-            return weight;
-        }
+        return result;
+    }
 
-        public void setWeight(Integer weight) {
-            this.weight = weight;
-        }
 
-        public String getColor() {
-            return color;
-        }
-
-        public void setColor(String color) {
-            this.color = color;
-        }
-
-        public String toString() {
-            return "Apple{" +
-                    "color='" + color + '\'' +
-                    ", weight=" + weight +
-                    '}';
-        }
+    interface ApplePredicate{
+        public boolean test(Apple a);
     }
 }
