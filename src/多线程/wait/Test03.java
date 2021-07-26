@@ -1,8 +1,7 @@
 package 多线程.wait;
 
 
-import org.omg.IOP.TAG_JAVA_CODEBASE;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 
 import java.util.ArrayList;
 import java.util.List;
