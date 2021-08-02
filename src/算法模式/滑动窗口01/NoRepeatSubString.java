@@ -47,7 +47,7 @@ public class NoRepeatSubString {
             //如果已经存在当前字符，缩小窗口方位
             if(charIndexMap.containsKey(rightChar)){
 
-                //窗口start如果在当前字符出现的最后一次的后面，则维持不变，反之，更新窗口start的位置
+                //更新窗口start的位置，跳过rightChar在map中第一次出现的位置
                 windowStart = Math.max(charIndexMap.get(rightChar)+1,windowStart);
             }
             //记录字符出现的最后一次的位置

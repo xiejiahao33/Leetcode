@@ -1,5 +1,8 @@
 package 算法模式.滑动窗口01;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 给定一个正数数组和一个正数'k'，找到大小为'k'的任何连续子数组的最大和。
  * Input: [2, 1, 5, 1, 3, 2], k=3
@@ -10,6 +13,18 @@ package 算法模式.滑动窗口01;
    Output: 7
    Explanation: Subarray with maximum sum is [3, 4].
  */
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+
+}
+
 public class MaxSumSubArrayOfSizeK {
 
     //较为简单，只演示优化后的版本 O(N)
@@ -29,7 +44,17 @@ public class MaxSumSubArrayOfSizeK {
         return maxSum;
     }
 
+    private static int te(int a){
+        return a;
+    }
+
     public static void main(String[] args) {
+        Map<TreeNode,Integer> map = new HashMap<>();
+
+        System.out.println(map.getOrDefault(null,0));
+        System.out.println(map.getOrDefault(null,0));
+        System.out.println(map.get(null));
+
         System.out.println("Maximum sum of a subarray of size K: "
                 + MaxSumSubArrayOfSizeK.findMaxSumSubArray(3, new int[] { 2, 1, 5, 1, 3, 2 }));
         System.out.println("Maximum sum of a subarray of size K: "
